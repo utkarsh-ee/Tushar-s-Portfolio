@@ -801,7 +801,7 @@
             height: 1px;
             overflow: hidden;
             opacity: 0;
-            tabindex: -1;
+            tab-index: -1;
         }
 
         .contact-submit-row {
@@ -1948,22 +1948,61 @@
          * MOBILE:   pointer-events: none (no torch, no accidental interaction).
          */
 
-        /* Block drag / click */
-        ["pointerdown", "mousedown", "pointerup", "mouseup", "click"].forEach(function (evt) {
-            sv.addEventListener(evt, function (e) { e.preventDefault(); }, { capture: true });
+        /*
+         * Spline's viewer renders its interactive canvas inside a shadow DOM.
+         * Merely calling preventDefault() on the custom element is not enough
+         * in every browser because Spline can still receive its own pointer
+         * handlers. We therefore intercept interaction at DOCUMENT CAPTURE
+         * level, while deliberately leaving pointermove alone so the desktop
+         * torch continues to receive the cursor position.
+         */
+
+        function eventIsInsideSpline(e) {
+            var path = typeof e.composedPath === "function" ? e.composedPath() : [];
+            return path.indexOf(sv) !== -1 || e.target === sv;
+        }
+
+        /*
+         * Block the events that start/end manipulation.
+         * stopImmediatePropagation() is intentional: it prevents Spline's
+         * internal handler from seeing the same event.
+         *
+         * pointermove is NOT blocked. That is what keeps the torch working.
+         */
+        ["pointerdown", "pointerup", "mousedown", "mouseup", "click"].forEach(function (evt) {
+            document.addEventListener(evt, function (e) {
+                if (!eventIsInsideSpline(e)) return;
+                e.preventDefault();
+                e.stopImmediatePropagation();
+            }, { capture: true });
         });
 
-        /* Block Spline zoom without blocking page scroll */
-        sv.addEventListener("wheel", function (e) { e.stopPropagation(); }, { capture: true });
+        /*
+         * Block Spline's wheel handler, but do NOT preventDefault().
+         * This allows the browser to continue scrolling the webpage.
+         */
+        document.addEventListener("wheel", function (e) {
+            if (!eventIsInsideSpline(e)) return;
+            e.stopImmediatePropagation();
+        }, { capture: true, passive: true });
 
-        /* Block touch manipulation of the statue; page still scrolls */
-        ["touchstart", "touchmove", "touchend"].forEach(function (evt) {
-            sv.addEventListener(evt, function (e) { e.stopPropagation(); }, { capture: true, passive: true });
+        /* Touch: stop Spline from receiving manipulation gestures.
+         * We intentionally do not preventDefault(), so page scrolling works.
+         */
+        ["touchstart", "touchmove", "touchend", "touchcancel"].forEach(function (evt) {
+            document.addEventListener(evt, function (e) {
+                if (!eventIsInsideSpline(e)) return;
+                e.stopImmediatePropagation();
+            }, { capture: true, passive: true });
         });
 
-        /* Block gesture events (older Safari pinch-zoom on Spline) */
+        /* Older Safari gesture events */
         ["gesturestart", "gesturechange", "gestureend"].forEach(function (evt) {
-            sv.addEventListener(evt, function (e) { e.preventDefault(); }, { capture: true });
+            document.addEventListener(evt, function (e) {
+                if (!eventIsInsideSpline(e)) return;
+                e.preventDefault();
+                e.stopImmediatePropagation();
+            }, { capture: true });
         });
 
         /* Mobile vs desktop pointer interaction */

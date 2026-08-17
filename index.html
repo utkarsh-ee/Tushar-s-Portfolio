@@ -1325,6 +1325,154 @@
 
         }
 
+
+
+        /* =====================================================
+           PREMIUM ACTIONS / LEGAL ROUTE FINDER
+           ===================================================== */
+
+        .floating-actions {
+            position: fixed;
+            right: 24px;
+            bottom: 24px;
+            z-index: 40;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-end;
+            gap: 10px;
+            pointer-events: none;
+        }
+
+        .floating-action {
+            pointer-events: auto;
+            border: 1px solid rgba(255,255,255,.72);
+            background: rgba(255,255,255,.58);
+            backdrop-filter: blur(18px) saturate(140%);
+            -webkit-backdrop-filter: blur(18px) saturate(140%);
+            color: var(--ink);
+            box-shadow: 0 16px 42px rgba(0,0,0,.12), inset 0 1px 0 rgba(255,255,255,.9);
+            cursor: pointer;
+            transition: transform .25s ease, background .25s ease, box-shadow .25s ease;
+        }
+
+        .floating-action:hover { transform: translateY(-3px); background: rgba(255,255,255,.82); box-shadow: 0 20px 50px rgba(0,0,0,.16), inset 0 1px 0 rgba(255,255,255,.95); }
+
+        .floating-book {
+            min-width: 210px;
+            padding: 13px 16px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 18px;
+            font-family: var(--mono);
+            font-size: 9px;
+            letter-spacing: .08em;
+            text-transform: uppercase;
+        }
+
+        .floating-book .status-dot { width: 6px; height: 6px; border-radius: 50%; background: #6b8b67; box-shadow: 0 0 0 4px rgba(107,139,103,.12); margin-right: 8px; display: inline-block; }
+
+        .review-badge {
+            padding: 10px 13px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-family: var(--mono);
+            font-size: 8px;
+            letter-spacing: .06em;
+            text-transform: uppercase;
+        }
+
+        .review-stars { color: var(--gold); font-size: 12px; letter-spacing: .05em; }
+
+        .route-section {
+            min-height: 100svh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding: 110px clamp(24px, 7.5vw, 120px);
+            pointer-events: none;
+        }
+
+        .route-panel {
+            width: min(720px, 92vw);
+            padding: clamp(28px, 4vw, 48px);
+            pointer-events: auto;
+            background: rgba(255,255,255,.66);
+            border: 1px solid rgba(20,20,20,.12);
+            backdrop-filter: blur(22px) saturate(135%);
+            -webkit-backdrop-filter: blur(22px) saturate(135%);
+            box-shadow: 0 30px 90px rgba(0,0,0,.10), inset 0 1px 0 rgba(255,255,255,.8);
+        }
+
+        .route-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 30px; }
+        .route-label { font-family: var(--mono); font-size: 8px; letter-spacing: .16em; text-transform: uppercase; color: var(--gold); }
+        .route-title { margin: 12px 0 0; font-family: var(--serif); font-size: clamp(2.7rem, 5vw, 5.2rem); font-weight: 400; line-height: .9; letter-spacing: -.055em; }
+        .route-title em { color: var(--navy); }
+        .route-intro { max-width: 330px; margin: 8px 0 0; color: var(--muted); font-size: 11px; line-height: 1.7; }
+
+        .route-progress { display: flex; gap: 5px; margin: 28px 0 24px; }
+        .route-progress span { width: 26px; height: 2px; background: var(--line); transition: background .2s ease, width .2s ease; }
+        .route-progress span.active { width: 44px; background: var(--navy); }
+
+        .route-question { font-family: var(--serif); font-size: 22px; line-height: 1.1; margin-bottom: 16px; }
+        .route-options { display: grid; grid-template-columns: repeat(2, 1fr); gap: 8px; }
+        .route-option { padding: 13px 14px; text-align: left; border: 1px solid var(--line); background: rgba(255,255,255,.52); color: var(--ink); cursor: pointer; font-family: var(--sans); font-size: 10px; transition: border-color .2s ease, transform .2s ease, background .2s ease; }
+        .route-option:hover { border-color: var(--ink); transform: translateY(-2px); background: rgba(255,255,255,.88); }
+        .route-option small { display: block; margin-top: 4px; color: var(--muted); font-size: 8px; line-height: 1.4; }
+
+        .route-result { display: none; border-top: 1px solid var(--line); padding-top: 24px; }
+        .route-result.visible { display: block; }
+        .route-result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; margin: 16px 0 20px; }
+        .route-result-card { padding: 14px; background: rgba(247,247,245,.8); border: 1px solid var(--line); }
+        .route-result-card span { display: block; font-family: var(--mono); color: var(--gold); font-size: 7px; letter-spacing: .14em; text-transform: uppercase; margin-bottom: 6px; }
+        .route-result-card strong { font-family: var(--serif); font-size: 18px; font-weight: 400; }
+        .route-disclaimer { margin: 0; color: var(--muted); font-size: 9px; line-height: 1.7; }
+        .route-actions { display: flex; gap: 8px; margin-top: 18px; }
+        .route-reset, .route-consult { padding: 11px 14px; border: 1px solid var(--ink); font-family: var(--mono); font-size: 8px; letter-spacing: .08em; text-transform: uppercase; cursor: pointer; }
+        .route-consult { background: var(--ink); color: #fff; }
+        .route-reset { background: transparent; color: var(--ink); }
+
+        .portal-trigger { position: fixed; left: 24px; bottom: 24px; z-index: 40; pointer-events: auto; padding: 10px 12px; border: 1px solid rgba(255,255,255,.7); background: rgba(255,255,255,.42); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); color: var(--muted); font-family: var(--mono); font-size: 7px; letter-spacing: .13em; text-transform: uppercase; cursor: pointer; }
+        .portal-trigger:hover { color: var(--ink); }
+
+        .modal-backdrop { position: fixed; inset: 0; z-index: 100; display: none; align-items: center; justify-content: center; padding: 24px; background: rgba(8,10,12,.34); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        .modal-backdrop.open { display: flex; }
+        .portal-modal { width: min(920px, 96vw); max-height: 90vh; overflow: auto; padding: 28px; background: rgba(250,250,248,.94); border: 1px solid rgba(255,255,255,.9); box-shadow: 0 40px 120px rgba(0,0,0,.28); }
+        .portal-header { display: flex; justify-content: space-between; gap: 20px; align-items: flex-start; padding-bottom: 22px; border-bottom: 1px solid var(--line); }
+        .portal-kicker { font-family: var(--mono); font-size: 8px; color: var(--gold); letter-spacing: .14em; text-transform: uppercase; }
+        .portal-title { margin: 8px 0 0; font-family: var(--serif); font-size: 36px; font-weight: 400; letter-spacing: -.04em; }
+        .portal-close { border: 1px solid var(--line); background: transparent; width: 34px; height: 34px; cursor: pointer; font-size: 18px; }
+        .portal-grid { display: grid; grid-template-columns: 1.2fr .8fr; gap: 20px; margin-top: 22px; }
+        .portal-card { padding: 18px; border: 1px solid var(--line); background: #fff; }
+        .portal-card h3 { margin: 0 0 14px; font-family: var(--serif); font-weight: 400; font-size: 22px; }
+        .admin-entry { display: grid; grid-template-columns: 100px 1fr auto; gap: 14px; padding: 14px 0; border-top: 1px solid var(--line); align-items: start; }
+        .admin-date { font-family: var(--mono); font-size: 8px; color: var(--gold); }
+        .admin-entry strong { display: block; font-size: 11px; }
+        .admin-entry span { display: block; margin-top: 3px; color: var(--muted); font-size: 9px; }
+        .admin-edit { border: 1px solid var(--line); background: transparent; padding: 6px 8px; font-family: var(--mono); font-size: 7px; text-transform: uppercase; cursor: pointer; }
+        .admin-add { width: 100%; margin-top: 12px; padding: 12px; border: 1px dashed var(--line-dark); background: var(--paper-soft); font-family: var(--mono); font-size: 8px; text-transform: uppercase; cursor: pointer; }
+        .portal-note { color: var(--muted); font-size: 10px; line-height: 1.7; }
+        .portal-chip { display: inline-flex; padding: 6px 8px; margin: 3px 3px 0 0; border: 1px solid var(--line); font-family: var(--mono); font-size: 7px; color: var(--ink-soft); }
+
+        @media (max-width: 800px) {
+            .floating-actions { right: 14px; bottom: 14px; }
+            .floating-book { min-width: 180px; }
+            .review-badge { display: none; }
+            .portal-trigger { left: 14px; bottom: 14px; }
+            .route-section { padding: 90px 22px; align-items: center; }
+            .route-panel { width: 100%; padding: 24px 18px; background: rgba(255,255,255,.84); }
+            .route-top { display: block; }
+            .route-intro { margin-top: 16px; }
+            .route-options { grid-template-columns: 1fr; }
+            .route-result-grid { grid-template-columns: 1fr; }
+            .portal-grid { grid-template-columns: 1fr; }
+            .portal-modal { padding: 20px; }
+            .admin-entry { grid-template-columns: 72px 1fr; }
+            .admin-edit { grid-column: 2; width: fit-content; }
+        }
+
     </style>
 
 </head>
@@ -1766,6 +1914,60 @@
 
 
 
+
+            <!-- =================================================
+                 AI LEGAL ROUTE FINDER — VISUAL DEMO
+                 ================================================= -->
+
+            <section
+                id="route-finder"
+                class="route-section"
+                aria-labelledby="heading-route"
+            >
+                <div class="route-panel">
+                    <div class="route-top">
+                        <div>
+                            <div class="route-label">06 / PRELIMINARY LEGAL INTAKE</div>
+                            <h2 id="heading-route" class="route-title">
+                                Find a <em>possible</em><br>legal route.
+                            </h2>
+                        </div>
+                        <p class="route-intro">
+                            A guided AI-assisted intake that turns a visitor's situation into a structured preliminary route for professional review.
+                        </p>
+                    </div>
+
+                    <div class="route-progress" aria-hidden="true">
+                        <span class="active"></span><span></span><span></span><span></span>
+                    </div>
+
+                    <div id="route-question-wrap">
+                        <div class="route-question" id="route-question">What kind of matter are you dealing with?</div>
+                        <div class="route-options" id="route-options">
+                            <button class="route-option" type="button" data-route="civil">Civil matter<small>Dispute, decree, contract, property or recovery</small></button>
+                            <button class="route-option" type="button" data-route="criminal">Criminal matter<small>Complaint, conviction, acquittal or criminal order</small></button>
+                            <button class="route-option" type="button" data-route="constitutional">Constitutional / writ<small>Public authority action or rights-based issue</small></button>
+                            <button class="route-option" type="button" data-route="tribunal">Tribunal / regulatory<small>Challenge to an order of a tribunal or authority</small></button>
+                        </div>
+                    </div>
+
+                    <div class="route-result" id="route-result">
+                        <div class="route-label">PRELIMINARY AI ASSESSMENT</div>
+                        <div class="route-result-grid">
+                            <div class="route-result-card"><span>Potential proceeding</span><strong id="route-proceeding">Civil Appeal</strong></div>
+                            <div class="route-result-card"><span>Potential forum</span><strong id="route-forum">Relevant appellate court</strong></div>
+                        </div>
+                        <p class="route-disclaimer">
+                            This is a preliminary information tool, not a final legal determination. Maintainability, limitation, jurisdiction, applicable law and the appropriate remedy require review by the advocate.
+                        </p>
+                        <div class="route-actions">
+                            <button class="route-reset" id="route-reset" type="button">Start again</button>
+                            <button class="route-consult" type="button" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Discuss this matter ↗</button>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
             <!-- =================================================
                  CONTACT
                  ================================================= -->
@@ -1781,7 +1983,7 @@
                     <div class="contact-box-header">
 
                         <div>
-                            <div class="section-number" aria-hidden="true">06 / CONTACT</div>
+                            <div class="section-number" aria-hidden="true">07 / CONTACT</div>
                             <h2 id="heading-contact" class="contact-heading">
                                 Let's <em>connect.</em>
                             </h2>
@@ -1910,6 +2112,91 @@
                 </div>
 
             </section>
+
+
+
+
+            <!-- =================================================
+                 FLOATING CONVERSION / CLIENT PORTAL PREVIEW
+                 ================================================= -->
+            <div class="floating-actions" aria-label="Quick actions">
+                <button class="floating-action review-badge" type="button" onclick="window.open('https://www.google.com/search?q=Tushar+Mishra+Advocate','_blank','noopener')">
+                    <span class="review-stars" aria-hidden="true">★★★★★</span>
+                    <span>Google Reviews ↗</span>
+                </button>
+                <button class="floating-action floating-book" type="button" onclick="document.getElementById('booking-modal').classList.add('open')">
+                    <span><span class="status-dot" aria-hidden="true"></span>Book a consultation</span>
+                    <span aria-hidden="true">↗</span>
+                </button>
+            </div>
+
+            <button class="portal-trigger" id="portal-trigger" type="button">Client portal preview</button>
+
+            <div class="modal-backdrop" id="booking-modal" role="dialog" aria-modal="true" aria-labelledby="booking-title">
+                <div class="portal-modal" style="max-width:620px">
+                    <div class="portal-header">
+                        <div>
+                            <div class="portal-kicker">CONSULTATION BOOKING</div>
+                            <h2 class="portal-title" id="booking-title">Choose a convenient time.</h2>
+                        </div>
+                        <button class="portal-close" type="button" data-close-modal="booking-modal" aria-label="Close">×</button>
+                    </div>
+                    <p class="portal-note" style="margin-top:20px">
+                        This is a visual preview. The production version can open the advocate's Google Calendar appointment schedule here, with available times handled entirely by Google Calendar.
+                    </p>
+                    <div class="portal-card" style="margin-top:18px">
+                        <h3>Google Calendar</h3>
+                        <p class="portal-note">Appointment schedule embed / popup goes here.</p>
+                        <button class="route-consult" type="button" style="margin-top:12px">Open booking calendar ↗</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="modal-backdrop" id="admin-modal" role="dialog" aria-modal="true" aria-labelledby="admin-title">
+                <div class="portal-modal">
+                    <div class="portal-header">
+                        <div>
+                            <div class="portal-kicker">PRIVATE CLIENT DASHBOARD / VISUAL PREVIEW</div>
+                            <h2 class="portal-title" id="admin-title">Profile control.</h2>
+                        </div>
+                        <button class="portal-close" type="button" data-close-modal="admin-modal" aria-label="Close">×</button>
+                    </div>
+
+                    <div class="portal-grid">
+                        <div class="portal-card">
+                            <h3>Experience</h3>
+                            <div class="admin-entry">
+                                <div class="admin-date">2023 — 2024</div>
+                                <div><strong>Advocate</strong><span>District Court · Delhi</span></div>
+                                <button class="admin-edit" type="button">Edit</button>
+                            </div>
+                            <div class="admin-entry">
+                                <div class="admin-date">2024</div>
+                                <div><strong>Research Intern</strong><span>RRU Centre for Indian Ocean Legal Studies</span></div>
+                                <button class="admin-edit" type="button">Edit</button>
+                            </div>
+                            <button class="admin-add" type="button">+ Add experience</button>
+                        </div>
+
+                        <div class="portal-card">
+                            <h3>AI intake controls</h3>
+                            <p class="portal-note">The production dashboard can let the advocate review, correct and update the AI's preliminary routing logic.</p>
+                            <div style="margin-top:12px">
+                                <span class="portal-chip">Civil Appeal</span>
+                                <span class="portal-chip">Criminal Appeal</span>
+                                <span class="portal-chip">Writ Petition</span>
+                                <span class="portal-chip">Tribunal Challenge</span>
+                                <span class="portal-chip">SLP / Supreme Court</span>
+                            </div>
+                            <button class="admin-add" type="button">+ Add / edit routing rule</button>
+                        </div>
+                    </div>
+
+                    <p class="portal-note" style="margin:20px 0 0">
+                        Production version: protected login → database → editable profile → AI configuration → case-intake review. This button is only a visual prototype and does not expose a real admin system.
+                    </p>
+                </div>
+            </div>
 
 
             <!-- =================================================
@@ -2137,6 +2424,70 @@
     }());
     </script>
 
+
+
+
+    <script>
+    /* =========================================================
+       VISUAL PROTOTYPE INTERACTIONS
+       ========================================================= */
+    (function () {
+        var buttons = document.querySelectorAll('.route-option');
+        var result = document.getElementById('route-result');
+        var questionWrap = document.getElementById('route-question-wrap');
+        var progress = document.querySelectorAll('.route-progress span');
+        var reset = document.getElementById('route-reset');
+        var proceeding = document.getElementById('route-proceeding');
+        var forum = document.getElementById('route-forum');
+
+        var routes = {
+            civil: ['Potential Civil Appeal', 'Relevant appellate court'],
+            criminal: ['Potential Criminal Appeal / Revision', 'Relevant appellate forum'],
+            constitutional: ['Potential Writ Proceeding', 'Appropriate constitutional court'],
+            tribunal: ['Potential Tribunal Challenge / Appeal', 'Relevant appellate forum']
+        };
+
+        buttons.forEach(function (button) {
+            button.addEventListener('click', function () {
+                var data = routes[button.dataset.route] || routes.civil;
+                proceeding.textContent = data[0];
+                forum.textContent = data[1];
+                questionWrap.style.display = 'none';
+                result.classList.add('visible');
+                progress.forEach(function (item, index) { item.classList.toggle('active', index < 4); });
+            });
+        });
+
+        if (reset) {
+            reset.addEventListener('click', function () {
+                questionWrap.style.display = '';
+                result.classList.remove('visible');
+                progress.forEach(function (item, index) { item.classList.toggle('active', index === 0); });
+            });
+        }
+
+        var portal = document.getElementById('portal-trigger');
+        var admin = document.getElementById('admin-modal');
+        if (portal && admin) portal.addEventListener('click', function () { admin.classList.add('open'); });
+
+        document.querySelectorAll('[data-close-modal]').forEach(function (button) {
+            button.addEventListener('click', function () {
+                var modal = document.getElementById(button.dataset.closeModal);
+                if (modal) modal.classList.remove('open');
+            });
+        });
+
+        document.querySelectorAll('.modal-backdrop').forEach(function (modal) {
+            modal.addEventListener('click', function (event) {
+                if (event.target === modal) modal.classList.remove('open');
+            });
+        });
+
+        document.addEventListener('keydown', function (event) {
+            if (event.key === 'Escape') document.querySelectorAll('.modal-backdrop.open').forEach(function (modal) { modal.classList.remove('open'); });
+        });
+    })();
+    </script>
 
 </body>
 

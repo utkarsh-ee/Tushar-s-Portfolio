@@ -1,0 +1,2104 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta
+        name="viewport"
+        content="width=device-width, initial-scale=1.0"
+    >
+
+    <meta
+        name="description"
+        content="Tushar Mishra — Advocate, LL.M. Maritime Laws. Legal research, maritime law, advocacy and international maritime affairs."
+    >
+
+    <meta name="author" content="Tushar Mishra">
+
+    <meta name="robots" content="index, follow">
+
+    <!-- Open Graph -->
+    <meta property="og:title"       content="Tushar Mishra | Advocate &amp; Maritime Law Researcher">
+    <meta property="og:description" content="Advocate and maritime-law researcher specialising in maritime law, legal research and international maritime affairs.">
+    <meta property="og:type"        content="website">
+    <meta property="og:url"         content="https://tusharmishra.in/">
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://tusharmishra.in/">
+
+    <title>Tushar Mishra | Maritime Law &amp; Legal Research</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@300;400;500&family=Inter:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap"
+        rel="stylesheet"
+    >
+
+    <!-- Spline Viewer -->
+    <script
+        type="module"
+        src="https://unpkg.com/@splinetool/viewer@1.12.98/build/spline-viewer.js">
+    </script>
+
+
+    <style>
+
+        /* =====================================================
+           ROOT
+           ===================================================== */
+
+        :root {
+            --paper:      #ffffff;
+            --paper-soft: #f7f7f5;
+            --ink:        #101113;
+            --ink-soft:   #45474b;
+            --muted:      #7d7f83;
+            --line:       #dedfdf;
+            --line-dark:  #c7c8c9;
+            --navy:       #172332;
+            --navy-soft:  #263849;
+            --gold:       #9b8052;
+            --gold-light: #c6aa76;
+            --serif: "Playfair Display", Georgia, serif;
+            --sans:  "Inter", Arial, sans-serif;
+            --mono:  "DM Mono", monospace;
+        }
+
+
+        /* =====================================================
+           RESET
+           ===================================================== */
+
+        * { box-sizing: border-box; }
+
+        html {
+            margin: 0;
+            padding: 0;
+            background: var(--paper);
+            scroll-behavior: smooth;
+        }
+
+        body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
+            background: var(--paper);
+            color: var(--ink);
+            font-family: var(--sans);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        button {
+            font-family: inherit;
+        }
+
+
+        /* =====================================================
+           FIXED SPLINE WORLD
+           ===================================================== */
+
+        .fixed-3d-background {
+            position: fixed;
+            inset: 0;
+            width: 100vw;
+            height: 100dvh;
+            min-width: 100vw;
+            min-height: 100dvh;
+            z-index: 0;
+            overflow: hidden;
+            pointer-events: auto;
+            background: #ffffff;
+        }
+
+        spline-viewer {
+            position: absolute;
+            inset: 0;
+            display: block;
+            width: 100vw;
+            height: 100dvh;
+            min-width: 100vw;
+            min-height: 100dvh;
+            margin: 0;
+            padding: 0;
+            pointer-events: auto;
+            background: transparent;
+        }
+
+
+        /* =====================================================
+           PAPER LIGHTING OVERLAY
+           ===================================================== */
+
+        .paper-overlay {
+            position: fixed;
+            inset: 0;
+            z-index: 1;
+            pointer-events: none;
+            background: linear-gradient(
+                90deg,
+                rgba(255,255,255,0.95) 0%,
+                rgba(255,255,255,0.76) 22%,
+                rgba(255,255,255,0.10) 58%,
+                rgba(255,255,255,0.00) 100%
+            );
+        }
+
+
+        /* =====================================================
+           MAIN WEBSITE
+           ===================================================== */
+
+        .site {
+            position: relative;
+            z-index: 2;
+            width: 100%;
+            pointer-events: none;
+        }
+
+
+        /* =====================================================
+           GLASS NAVIGATION
+           ===================================================== */
+
+        .navigation {
+            position: fixed;
+            top: 12px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: min(94%, 1180px);
+            height: 50px;
+            padding: 0 16px 0 18px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            z-index: 20;
+            pointer-events: none;
+            background: rgba(255,255,255,0.42);
+            backdrop-filter: blur(22px) saturate(150%);
+            -webkit-backdrop-filter: blur(22px) saturate(150%);
+            border: 1px solid rgba(255,255,255,0.70);
+            box-shadow:
+                0 10px 32px rgba(0,0,0,0.07),
+                inset 0 1px 0 rgba(255,255,255,0.85);
+        }
+
+        .nav-name {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            font-size: 11px;
+            font-weight: 600;
+            letter-spacing: 0.16em;
+            text-transform: uppercase;
+            pointer-events: auto;
+        }
+
+        .nav-mark {
+            width: 30px;
+            height: 30px;
+            display: grid;
+            place-items: center;
+            border: 1px solid var(--ink);
+            font-family: var(--serif);
+            font-size: 13px;
+            background: rgba(255,255,255,0.35);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: clamp(18px, 3vw, 42px);
+            pointer-events: auto;
+        }
+
+        .nav-links a {
+            position: relative;
+            font-size: 9px;
+            font-weight: 500;
+            letter-spacing: 0.13em;
+            text-transform: uppercase;
+            color: var(--ink-soft);
+            transition: color .25s ease;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -7px;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: width .25s ease;
+        }
+
+        .nav-links a:hover { color: var(--ink); }
+        .nav-links a:hover::after { width: 100%; }
+
+        /* Focus states for keyboard nav */
+        .nav-links a:focus-visible,
+        .nav-name:focus-visible {
+            outline: 2px solid var(--gold);
+            outline-offset: 4px;
+            border-radius: 2px;
+        }
+
+
+        /* =====================================================
+           HERO
+           ===================================================== */
+
+        .hero {
+            position: relative;
+            min-height: 100svh;
+            height: 100svh;
+            width: 100%;
+            display: flex;
+            align-items: flex-end;
+            padding: 0 clamp(24px, 7vw, 120px) clamp(52px, 9vh, 100px);
+            pointer-events: none;
+        }
+
+        .hero-copy {
+            width: min(760px, 90vw);
+            pointer-events: auto;
+        }
+
+        .hero-kicker {
+            display: flex;
+            align-items: center;
+            gap: 13px;
+            margin-bottom: 25px;
+            color: var(--gold);
+            font-family: var(--mono);
+            font-size: 10px;
+            letter-spacing: .18em;
+            text-transform: uppercase;
+        }
+
+        .hero-kicker::before {
+            content: "";
+            width: 34px;
+            height: 1px;
+            background: var(--gold);
+        }
+
+        .hero-title {
+            margin: 0;
+            font-family: var(--serif);
+            font-weight: 400;
+            font-size: clamp(4.2rem, 10vw, 10.5rem);
+            line-height: .82;
+            letter-spacing: -.065em;
+        }
+
+        .hero-title span {
+            display: block;
+            font-style: italic;
+            color: var(--navy);
+        }
+
+        .hero-subtitle {
+            max-width: 470px;
+            margin-top: 35px;
+            font-size: clamp(14px, 1.15vw, 17px);
+            line-height: 1.75;
+            color: var(--ink-soft);
+        }
+
+        .hero-meta {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            margin-top: 32px;
+            font-family: var(--mono);
+            font-size: 9px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .hero-meta span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .hero-meta span::before {
+            content: "";
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: var(--gold);
+        }
+
+
+        /* =====================================================
+           SCROLL MARKER
+           ===================================================== */
+
+        .scroll-marker {
+            position: absolute;
+            right: clamp(24px, 5vw, 80px);
+            bottom: clamp(45px, 8vh, 90px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 12px;
+            font-family: var(--mono);
+            font-size: 8px;
+            letter-spacing: .2em;
+            text-transform: uppercase;
+            color: var(--muted);
+        }
+
+        .scroll-marker-line {
+            width: 1px;
+            height: 58px;
+            background: linear-gradient(to bottom, var(--ink), transparent);
+        }
+
+
+        /* =====================================================
+           GENERAL SECTIONS
+           ===================================================== */
+
+        .section {
+            position: relative;
+            min-height: 100svh;
+            width: 100%;
+            display: flex;
+            align-items: center;
+            padding: 110px clamp(24px, 7.5vw, 120px);
+            pointer-events: none;
+        }
+
+        .section-left  { justify-content: flex-start; }
+        .section-right { justify-content: flex-end; }
+
+        .section-content {
+            width: min(580px, 90vw);
+            pointer-events: auto;
+        }
+
+        .section-number {
+            margin-bottom: 18px;
+            font-family: var(--mono);
+            font-size: 10px;
+            letter-spacing: .15em;
+            color: var(--gold);
+        }
+
+        .section-heading {
+            margin: 0;
+            font-family: var(--serif);
+            font-weight: 400;
+            font-size: clamp(3rem, 6vw, 6rem);
+            line-height: .95;
+            letter-spacing: -.055em;
+        }
+
+        .section-heading em {
+            font-style: italic;
+            color: var(--navy);
+        }
+
+        .section-rule {
+            width: 70px;
+            height: 1px;
+            margin: 28px 0;
+            background: var(--gold);
+        }
+
+        .section-description {
+            max-width: 530px;
+            margin: 0;
+            color: var(--ink-soft);
+            font-size: 15px;
+            line-height: 1.85;
+        }
+
+
+        /* =====================================================
+           EXPERTISE GRID
+           ===================================================== */
+
+        .expertise {
+            margin-top: 40px;
+            display: grid;
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+            border-top: 1px solid var(--line);
+            border-left: 1px solid var(--line);
+        }
+
+        .expertise-item {
+            min-height: 130px;
+            padding: 22px;
+            border-right: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
+            background: rgba(255,255,255,.72);
+            transition: background .25s ease, transform .25s ease;
+        }
+
+        .expertise-item:hover {
+            background: rgba(255,255,255,.96);
+            transform: translateY(-3px);
+        }
+
+        .expertise-item small {
+            display: block;
+            margin-bottom: 12px;
+            font-family: var(--mono);
+            font-size: 8px;
+            color: var(--gold);
+            letter-spacing: .12em;
+        }
+
+        .expertise-item strong {
+            font-family: var(--serif);
+            font-size: 20px;
+            font-weight: 400;
+        }
+
+
+        /* =====================================================
+           MARITIME RESEARCH
+           ===================================================== */
+
+        .research-layout {
+            width: 100%;
+            display: grid;
+            grid-template-columns: minmax(280px, .72fr) minmax(450px, 1.28fr);
+            gap: clamp(50px, 8vw, 140px);
+            align-items: center;
+        }
+
+        .research-list {
+            border-top: 1px solid rgba(30,30,30,.22);
+            pointer-events: auto;
+            background: rgba(18,20,22,.20);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            box-shadow: 0 20px 60px rgba(0,0,0,.05);
+        }
+
+        .research-item {
+            display: grid;
+            grid-template-columns: 48px 1fr;
+            gap: 20px;
+            padding: 26px 24px;
+            border-bottom: 1px solid rgba(255,255,255,.24);
+            background: rgba(255,255,255,.74);
+            transition: background .25s ease, padding-left .3s ease;
+        }
+
+        .research-item:hover {
+            background: rgba(255,255,255,.88);
+            padding-left: 32px;
+        }
+
+        .research-index {
+            font-family: var(--mono);
+            font-size: 9px;
+            color: var(--gold);
+        }
+
+        .research-item h3 {
+            margin: 0 0 8px;
+            font-family: var(--serif);
+            font-weight: 400;
+            font-size: clamp(19px, 2vw, 27px);
+            line-height: 1.15;
+            color: #111316;
+        }
+
+        .research-item p {
+            margin: 0;
+            color: #686b70;
+            font-size: 12px;
+            line-height: 1.65;
+        }
+
+
+        /* =====================================================
+           EXPERIENCE TIMELINE
+           ===================================================== */
+
+        .timeline {
+            width: min(900px, 100%);
+            margin-top: 50px;
+            border-top: 1px solid var(--line);
+            pointer-events: auto;
+        }
+
+        .timeline-entry {
+            display: grid;
+            grid-template-columns: 170px 1fr;
+            gap: 40px;
+            padding: 30px 0;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .timeline-date {
+            font-family: var(--mono);
+            font-size: 9px;
+            letter-spacing: .08em;
+            color: var(--gold);
+        }
+
+        .timeline-role {
+            margin: 0 0 8px;
+            font-family: var(--serif);
+            font-size: 24px;
+            font-weight: 400;
+        }
+
+        .timeline-place {
+            margin-bottom: 16px;
+            font-family: var(--mono);
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: .1em;
+            color: var(--muted);
+        }
+
+        .timeline-description {
+            margin: 0;
+            color: var(--ink-soft);
+            font-size: 13px;
+            line-height: 1.75;
+        }
+
+
+        /* =====================================================
+           CREDENTIALS
+           ===================================================== */
+
+        .credentials-section {
+            justify-content: flex-start;
+            align-items: center;
+            padding-left: clamp(24px, 7.5vw, 120px);
+            padding-right: clamp(24px, 7.5vw, 120px);
+        }
+
+        .credentials-content {
+            width: min(1100px, 100%);
+            pointer-events: auto;
+        }
+
+        .credentials-heading {
+            position: relative;
+            margin: 0 0 42px;
+            width: min(800px, 90vw);
+            font-family: var(--serif);
+            font-size: clamp(5rem, 10vw, 10rem);
+            font-weight: 400;
+            line-height: .78;
+            letter-spacing: -.075em;
+            z-index: 1;
+        }
+
+        .credentials-heading span {
+            display: block;
+            color: var(--navy);
+            font-style: italic;
+            padding-left: clamp(10px, 3vw, 45px);
+        }
+
+        .credentials {
+            position: relative;
+            width: min(100%, 900px);
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            border-top: 1px solid rgba(20,20,20,.18);
+            border-left: 1px solid rgba(20,20,20,.18);
+            margin-top: 25px;
+            pointer-events: auto;
+            z-index: 3;
+        }
+
+        .credential {
+            min-height: 250px;
+            padding: 36px;
+            border-right: 1px solid rgba(20,20,20,.18);
+            border-bottom: 1px solid rgba(20,20,20,.18);
+            background: rgba(255,255,255,.56);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            transition: background .3s ease, transform .3s ease;
+        }
+
+        .credential:hover {
+            background: rgba(255,255,255,.76);
+            transform: translateY(-4px);
+        }
+
+        .credential-label {
+            margin-bottom: 34px;
+            font-family: var(--mono);
+            font-size: 8px;
+            letter-spacing: .15em;
+            color: var(--gold);
+            text-transform: uppercase;
+        }
+
+        .credential h3 {
+            margin: 0;
+            font-family: var(--serif);
+            font-size: clamp(22px, 2.2vw, 31px);
+            font-weight: 400;
+            line-height: 1.08;
+        }
+
+        .credential p {
+            margin: 20px 0 0;
+            color: #73767a;
+            font-size: 11px;
+            line-height: 1.6;
+        }
+
+        .section .timeline {
+            width: min(900px, 100%);
+        }
+
+
+        /* =====================================================
+           CONTACT SECTION — BASE (DESKTOP)
+           Always outside any media query.
+           ===================================================== */
+
+        .contact-section {
+            min-height: 100svh;
+            padding: 110px clamp(24px, 7.5vw, 120px);
+            display: flex;
+            align-items: center;
+            justify-content: flex-start;
+            pointer-events: none;
+        }
+
+        .contact-box {
+            width: min(100%, 1050px);
+            padding: clamp(30px, 5vw, 65px);
+            pointer-events: auto;
+            background: rgba(255,255,255,.72);
+            backdrop-filter: blur(18px) saturate(130%);
+            -webkit-backdrop-filter: blur(18px) saturate(130%);
+            border: 1px solid rgba(20,20,20,.12);
+            box-shadow: 0 30px 90px rgba(0,0,0,.08);
+        }
+
+        .contact-box-header {
+            display: flex;
+            align-items: flex-end;
+            justify-content: space-between;
+            gap: 60px;
+            padding-bottom: 42px;
+            border-bottom: 1px solid var(--line);
+        }
+
+        .contact-heading {
+            margin: 12px 0 0;
+            font-family: var(--serif);
+            font-size: clamp(4rem, 8vw, 8rem);
+            font-weight: 400;
+            line-height: .82;
+            letter-spacing: -.065em;
+        }
+
+        .contact-heading em {
+            color: var(--navy);
+            font-style: italic;
+        }
+
+        .contact-box-note {
+            max-width: 260px;
+            padding-bottom: 5px;
+            color: var(--muted);
+            font-size: 11px;
+            line-height: 1.7;
+        }
+
+        .contact-form {
+            padding-top: 38px;
+        }
+
+        .contact-row {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+
+        .contact-field {
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 28px;
+        }
+
+        .contact-field label {
+            margin-bottom: 10px;
+            font-family: var(--mono);
+            font-size: 8px;
+            letter-spacing: .15em;
+            text-transform: uppercase;
+            color: var(--gold);
+        }
+
+        .contact-field input,
+        .contact-field textarea {
+            width: 100%;
+            padding: 14px 0;
+            border: none;
+            border-bottom: 1px solid var(--line-dark);
+            outline: none;
+            background: transparent;
+            color: var(--ink);
+            font-family: var(--sans);
+            font-size: 13px;
+            transition: border-color .25s ease;
+        }
+
+        .contact-field textarea {
+            resize: vertical;
+            min-height: 120px;
+            line-height: 1.7;
+        }
+
+        .contact-field input::placeholder,
+        .contact-field textarea::placeholder {
+            color: #a2a3a5;
+        }
+
+        .contact-field input:focus,
+        .contact-field textarea:focus {
+            border-bottom-color: var(--ink);
+        }
+
+        /* Accessible focus rings for form inputs */
+        .contact-field input:focus-visible,
+        .contact-field textarea:focus-visible {
+            outline: 2px solid var(--gold);
+            outline-offset: 2px;
+        }
+
+        /* Honeypot — visually hidden */
+        .contact-honeypot {
+            position: absolute;
+            left: -9999px;
+            width: 1px;
+            height: 1px;
+            overflow: hidden;
+            opacity: 0;
+            tabindex: -1;
+        }
+
+        .contact-submit-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+            margin-top: 12px;
+        }
+
+        .contact-direct {
+            color: var(--muted);
+            font-family: var(--mono);
+            font-size: 8px;
+            line-height: 1.7;
+        }
+
+        .contact-direct a {
+            display: block;
+            margin-top: 4px;
+            color: var(--ink);
+            border-bottom: 1px solid var(--ink);
+            width: fit-content;
+        }
+
+        .contact-submit {
+            display: inline-flex;
+            align-items: center;
+            gap: 16px;
+            padding: 15px 22px;
+            border: 1px solid var(--ink);
+            background: var(--ink);
+            color: white;
+            font-family: var(--mono);
+            font-size: 9px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: background .25s ease, color .25s ease, opacity .25s ease;
+        }
+
+        .contact-submit span {
+            font-size: 16px;
+            transition: transform .25s ease;
+        }
+
+        .contact-submit:hover {
+            background: transparent;
+            color: var(--ink);
+        }
+
+        .contact-submit:hover span {
+            transform: translate(3px, -3px);
+        }
+
+        .contact-submit:disabled {
+            opacity: .55;
+            cursor: not-allowed;
+        }
+
+        .contact-submit:focus-visible {
+            outline: 2px solid var(--gold);
+            outline-offset: 3px;
+        }
+
+        /* Form status messages */
+        .form-status {
+            margin-top: 20px;
+            padding: 14px 18px;
+            font-family: var(--mono);
+            font-size: 10px;
+            letter-spacing: .08em;
+            line-height: 1.6;
+            display: none;
+        }
+
+        .form-status.success {
+            display: block;
+            background: rgba(23, 35, 50, .06);
+            border-left: 3px solid var(--navy);
+            color: var(--navy);
+        }
+
+        .form-status.error {
+            display: block;
+            background: rgba(180, 60, 60, .06);
+            border-left: 3px solid #b43c3c;
+            color: #8b2020;
+        }
+
+
+        /* =====================================================
+           FOOTER
+           ===================================================== */
+
+        footer {
+            min-height: 72px;
+            height: 72px;
+            padding: 18px clamp(24px, 5vw, 80px);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-top: 1px solid var(--line);
+            color: var(--muted);
+            font-family: var(--mono);
+            font-size: 8px;
+            letter-spacing: .12em;
+            text-transform: uppercase;
+            pointer-events: auto;
+        }
+
+
+        /* =====================================================
+           TABLET  (max-width: 1000px)
+           ===================================================== */
+
+        @media (max-width: 1000px) {
+
+            .research-layout {
+                grid-template-columns: 1fr;
+            }
+
+            .research-layout .section-content {
+                margin-bottom: 45px;
+            }
+
+            .research-list {
+                width: 100%;
+            }
+
+            .credentials {
+                grid-template-columns: repeat(3, 1fr);
+            }
+
+        }
+
+
+        /* =====================================================
+           MOBILE  (max-width: 800px)
+           ===================================================== */
+
+        @media (max-width: 800px) {
+
+            /* Page */
+            html, body {
+                width: 100%;
+                overflow-x: hidden;
+            }
+
+            /* Navigation */
+            .navigation {
+                top: 10px;
+                left: 12px;
+                transform: none;
+                width: calc(100% - 24px);
+                height: 50px;
+                padding: 0 14px;
+                border-radius: 2px;
+                background: rgba(255,255,255,0.62);
+                backdrop-filter: blur(14px);
+                -webkit-backdrop-filter: blur(14px);
+                box-shadow: 0 8px 24px rgba(0,0,0,0.06);
+            }
+
+            .nav-name {
+                gap: 9px;
+                font-size: 9px;
+                letter-spacing: .14em;
+            }
+
+            .nav-mark {
+                width: 27px;
+                height: 27px;
+                font-size: 12px;
+            }
+
+            .nav-name span:last-child { display: none; }
+
+            .nav-links { display: none; }
+
+            .navigation::after {
+                content: "MENU";
+                display: block;
+                font-family: var(--mono);
+                font-size: 8px;
+                letter-spacing: .15em;
+                color: var(--ink-soft);
+            }
+
+            /* Spline viewport */
+            .fixed-3d-background {
+                width: 100vw;
+                height: 100svh;
+            }
+
+            spline-viewer {
+                width: 100vw;
+                height: 100svh;
+            }
+
+            .paper-overlay {
+                background: linear-gradient(
+                    90deg,
+                    rgba(255,255,255,.96) 0%,
+                    rgba(255,255,255,.72) 55%,
+                    rgba(255,255,255,.18) 100%
+                );
+            }
+
+            /* Hero */
+            .hero {
+                min-height: 100svh;
+                height: 100svh;
+                padding: 0 22px 42px;
+                align-items: flex-end;
+            }
+
+            .hero-copy {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .hero-kicker {
+                margin-bottom: 17px;
+                font-size: 8px;
+                letter-spacing: .15em;
+            }
+
+            .hero-kicker::before { width: 24px; }
+
+            .hero-title {
+                max-width: 100%;
+                font-size: clamp(4rem, 18vw, 6.2rem);
+                line-height: .80;
+                letter-spacing: -.07em;
+            }
+
+            .hero-subtitle {
+                max-width: 300px;
+                margin-top: 22px;
+                font-size: 12px;
+                line-height: 1.65;
+            }
+
+            .hero-meta {
+                margin-top: 20px;
+                gap: 8px;
+                font-size: 7px;
+            }
+
+            .hero-meta span { gap: 6px; }
+
+            .hero-meta span::before {
+                width: 4px;
+                height: 4px;
+            }
+
+            .scroll-marker { display: none; }
+
+            /* General sections */
+            .section {
+                min-height: auto;
+                padding: 100px 22px;
+                display: block;
+            }
+
+            .section-left,
+            .section-right {
+                justify-content: initial;
+            }
+
+            .section-content {
+                width: 100%;
+                max-width: 100%;
+            }
+
+            .section-number {
+                margin-bottom: 14px;
+                font-size: 8px;
+            }
+
+            .section-heading {
+                font-size: clamp(3rem, 14vw, 5rem);
+                line-height: .88;
+            }
+
+            .section-rule {
+                width: 48px;
+                margin: 22px 0;
+            }
+
+            .section-description {
+                max-width: 330px;
+                font-size: 13px;
+                line-height: 1.75;
+            }
+
+            /* Expertise */
+            .expertise {
+                grid-template-columns: 1fr 1fr;
+                margin-top: 30px;
+            }
+
+            .expertise-item {
+                min-height: 105px;
+                padding: 16px;
+            }
+
+            .expertise-item small {
+                margin-bottom: 10px;
+                font-size: 7px;
+            }
+
+            .expertise-item strong {
+                font-size: 16px;
+                line-height: 1.1;
+            }
+
+            /* Maritime research */
+            .research-layout { display: block; }
+
+            .research-layout .section-content {
+                margin-bottom: 45px;
+            }
+
+            .research-list {
+                width: 100%;
+                background: rgba(255,255,255,.82);
+                backdrop-filter: blur(8px);
+                -webkit-backdrop-filter: blur(8px);
+                box-shadow: none;
+            }
+
+            .research-item {
+                grid-template-columns: 32px 1fr;
+                gap: 12px;
+                padding: 20px 15px;
+                background: rgba(255,255,255,.78);
+            }
+
+            .research-item:hover {
+                padding-left: 15px;
+                background: rgba(255,255,255,.78);
+            }
+
+            .research-index { font-size: 7px; }
+
+            .research-item h3 {
+                font-size: 19px;
+                line-height: 1.1;
+                margin-bottom: 7px;
+            }
+
+            .research-item p {
+                font-size: 10px;
+                line-height: 1.55;
+            }
+
+            /* Experience */
+            .timeline { margin-top: 35px; }
+
+            .timeline-entry {
+                display: block;
+                padding: 23px 0;
+            }
+
+            .timeline-date {
+                margin-bottom: 10px;
+                font-size: 8px;
+            }
+
+            .timeline-role {
+                font-size: 21px;
+                margin-bottom: 6px;
+            }
+
+            .timeline-place {
+                font-size: 8px;
+                margin-bottom: 12px;
+            }
+
+            .timeline-description {
+                font-size: 11px;
+                line-height: 1.7;
+            }
+
+            /* Credentials */
+            .credentials-section {
+                min-height: auto;
+                padding: 100px 22px;
+            }
+
+            .credentials-content { width: 100%; }
+
+            .credentials-heading {
+                width: 100%;
+                margin-bottom: 35px;
+                font-size: clamp(4rem, 18vw, 6.5rem);
+                line-height: .78;
+            }
+
+            .credentials-heading span { padding-left: 12px; }
+
+            .credentials {
+                grid-template-columns: 1fr;
+                width: 100%;
+                margin-top: 20px;
+            }
+
+            .credential {
+                min-height: 170px;
+                padding: 25px;
+                backdrop-filter: blur(7px);
+                -webkit-backdrop-filter: blur(7px);
+            }
+
+            .credential-label {
+                margin-bottom: 25px;
+                font-size: 7px;
+            }
+
+            .credential h3 { font-size: 25px; }
+
+            .credential p {
+                margin-top: 14px;
+                font-size: 10px;
+            }
+
+            /* Contact */
+            .contact-section {
+                min-height: auto;
+                padding: 90px 22px;
+            }
+
+            .contact-box {
+                width: 100%;
+                padding: 28px 20px;
+                background: rgba(255,255,255,.84);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+            }
+
+            .contact-box-header {
+                display: block;
+                padding-bottom: 30px;
+            }
+
+            .contact-heading {
+                font-size: clamp(3.5rem, 17vw, 6rem);
+                line-height: .82;
+            }
+
+            .contact-box-note {
+                max-width: 280px;
+                margin-top: 25px;
+                font-size: 10px;
+            }
+
+            .contact-form { padding-top: 28px; }
+
+            .contact-row {
+                grid-template-columns: 1fr;
+                gap: 0;
+            }
+
+            .contact-field { margin-bottom: 23px; }
+
+            .contact-submit-row {
+                display: flex;
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 24px;
+            }
+
+            .contact-submit {
+                width: 100%;
+                justify-content: space-between;
+            }
+
+            /* Footer */
+            footer {
+                min-height: 65px;
+                height: auto;
+                padding: 16px 22px;
+                display: flex;
+                flex-direction: row;
+                align-items: center;
+                justify-content: space-between;
+                gap: 10px;
+                font-size: 7px;
+            }
+
+            footer span:nth-child(2) { display: none; }
+
+        }
+
+
+        /* =====================================================
+           VERY SMALL PHONES  (max-width: 380px)
+           ===================================================== */
+
+        @media (max-width: 380px) {
+
+            .hero-title { font-size: 3.6rem; }
+
+            .hero-subtitle {
+                max-width: 275px;
+                font-size: 11px;
+            }
+
+            .expertise-item {
+                min-height: 95px;
+                padding: 13px;
+            }
+
+            .expertise-item strong { font-size: 14px; }
+
+            .research-item h3 { font-size: 17px; }
+
+            .credentials-heading { font-size: 3.7rem; }
+
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+
+    <!-- =====================================================
+         FIXED SPLINE SCENE
+         ===================================================== -->
+
+    <div class="fixed-3d-background">
+
+        <spline-viewer
+            id="spline-viewer"
+            url="https://prod.spline.design/IWaejNe6lPjrnPDt/scene.splinecode"
+            loading-anim-type="none">
+        </spline-viewer>
+
+    </div>
+
+
+    <!-- =====================================================
+         PAPER OVERLAY
+         ===================================================== -->
+
+    <div class="paper-overlay" aria-hidden="true"></div>
+
+
+    <!-- =====================================================
+         WEBSITE
+         ===================================================== -->
+
+    <div class="site">
+
+
+        <!-- =================================================
+             NAVIGATION
+             ================================================= -->
+
+        <nav class="navigation" aria-label="Primary navigation">
+
+            <a href="#top" class="nav-name" aria-label="Tushar Mishra — return to top">
+                <span class="nav-mark" aria-hidden="true">TM</span>
+                <span>Tushar Mishra</span>
+            </a>
+
+            <div class="nav-links" role="list">
+                <a href="#about"      role="listitem">Profile</a>
+                <a href="#research"   role="listitem">Maritime</a>
+                <a href="#experience" role="listitem">Experience</a>
+                <a href="#contact"    role="listitem">Contact</a>
+            </div>
+
+        </nav>
+
+
+
+        <!-- =================================================
+             MAIN
+             ================================================= -->
+
+        <main id="top">
+
+
+            <!-- =================================================
+                 HERO
+                 ================================================= -->
+
+            <section class="hero" aria-label="Introduction">
+
+                <div class="hero-copy">
+
+                    <div class="hero-kicker" aria-hidden="true">
+                        Advocate · Maritime Law
+                    </div>
+
+                    <h1 class="hero-title">
+                        Law,
+                        <span>beyond borders.</span>
+                    </h1>
+
+                    <p class="hero-subtitle">
+                        Legal practitioner and maritime-law
+                        researcher working across advocacy,
+                        international maritime frameworks,
+                        legal research and emerging questions
+                        in the law of the sea.
+                    </p>
+
+                    <div class="hero-meta" aria-label="Qualifications">
+                        <span>LL.M. Maritime Laws</span>
+                        <span>AIBE-XVIII</span>
+                        <span>India</span>
+                    </div>
+
+                </div>
+
+                <div class="scroll-marker" aria-hidden="true">
+                    <span>Explore</span>
+                    <div class="scroll-marker-line"></div>
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 PROFILE
+                 ================================================= -->
+
+            <section
+                id="about"
+                class="section section-left"
+                aria-labelledby="heading-about"
+            >
+
+                <div class="section-content">
+
+                    <div class="section-number" aria-hidden="true">01 / PROFILE</div>
+
+                    <h2 id="heading-about" class="section-heading">
+                        A practice built
+                        <em>around inquiry.</em>
+                    </h2>
+
+                    <div class="section-rule" aria-hidden="true"></div>
+
+                    <p class="section-description">
+                        Tushar Mishra is an advocate with an
+                        academic specialization in Maritime Laws.
+                        His work combines legal research,
+                        litigation-oriented experience and
+                        interdisciplinary study of maritime,
+                        constitutional, corporate and
+                        international legal questions.
+                    </p>
+
+                    <div class="expertise" aria-label="Areas of expertise">
+
+                        <div class="expertise-item">
+                            <small>01</small>
+                            <strong>Maritime Law</strong>
+                        </div>
+
+                        <div class="expertise-item">
+                            <small>02</small>
+                            <strong>Legal Research</strong>
+                        </div>
+
+                        <div class="expertise-item">
+                            <small>03</small>
+                            <strong>Constitutional Law</strong>
+                        </div>
+
+                        <div class="expertise-item">
+                            <small>04</small>
+                            <strong>Foreign Trade Law</strong>
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 MARITIME RESEARCH
+                 ================================================= -->
+
+            <section
+                id="research"
+                class="section"
+                aria-labelledby="heading-research"
+            >
+
+                <div class="research-layout">
+
+                    <div class="section-content">
+
+                        <div class="section-number" aria-hidden="true">02 / MARITIME RESEARCH</div>
+
+                        <h2 id="heading-research" class="section-heading">
+                            Where the
+                            <em>sea meets law.</em>
+                        </h2>
+
+                        <div class="section-rule" aria-hidden="true"></div>
+
+                        <p class="section-description">
+                            Academic research spanning maritime
+                            jurisdiction, shipping decarbonization,
+                            autonomous vessels and environmental
+                            questions surrounding maritime activity.
+                        </p>
+
+                    </div>
+
+                    <div class="research-list" role="list" aria-label="Research papers">
+
+                        <article class="research-item" role="listitem">
+                            <div class="research-index" aria-hidden="true">01</div>
+                            <div>
+                                <h3>Arctic Sea Territorial Maritime Jurisdiction</h3>
+                                <p>
+                                    Analysis of UNCLOS provisions,
+                                    sovereign claims and India's
+                                    Arctic policy.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="research-item" role="listitem">
+                            <div class="research-index" aria-hidden="true">02</div>
+                            <div>
+                                <h3>Decarbonization of Shipping</h3>
+                                <p>
+                                    Examination of IMO net-zero goals,
+                                    technological hurdles and
+                                    regulatory challenges.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="research-item" role="listitem">
+                            <div class="research-index" aria-hidden="true">03</div>
+                            <div>
+                                <h3>The Rise of Autonomous Ships</h3>
+                                <p>
+                                    Legal ambiguities under international
+                                    maritime conventions, liability and
+                                    cybersecurity implications.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="research-item" role="listitem">
+                            <div class="research-index" aria-hidden="true">04</div>
+                            <div>
+                                <h3>Underwater Radiated Noise Pollution</h3>
+                                <p>
+                                    Ecological impact and regulatory
+                                    gaps examined through UNCLOS
+                                    and IMO frameworks.
+                                </p>
+                            </div>
+                        </article>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 EXPERIENCE
+                 ================================================= -->
+
+            <section
+                id="experience"
+                class="section section-left"
+                aria-labelledby="heading-experience"
+            >
+
+                <div class="section-content">
+
+                    <div class="section-number" aria-hidden="true">03 / EXPERIENCE</div>
+
+                    <h2 id="heading-experience" class="section-heading">
+                        From the
+                        <em>case file</em>
+                        to the courtroom.
+                    </h2>
+
+                    <div class="section-rule" aria-hidden="true"></div>
+
+                    <div class="timeline" role="list" aria-label="Work experience">
+
+                        <article class="timeline-entry" role="listitem">
+                            <div class="timeline-date">2023 — 2024</div>
+                            <div>
+                                <h3 class="timeline-role">Advocate</h3>
+                                <div class="timeline-place">District Court · Delhi</div>
+                                <p class="timeline-description">
+                                    Client advisory, case preparation,
+                                    legal research, witness interviews,
+                                    evidence review, defence strategy,
+                                    legal drafting and filing.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="timeline-entry" role="listitem">
+                            <div class="timeline-date">2024</div>
+                            <div>
+                                <h3 class="timeline-role">Research Intern</h3>
+                                <div class="timeline-place">RRU Centre for Indian Ocean Legal Studies</div>
+                                <p class="timeline-description">
+                                    Maritime-law research spanning
+                                    Arctic jurisdiction, shipping
+                                    decarbonization, autonomous ships
+                                    and underwater radiated noise.
+                                </p>
+                            </div>
+                        </article>
+
+                        <article class="timeline-entry" role="listitem">
+                            <div class="timeline-date">2023</div>
+                            <div>
+                                <h3 class="timeline-role">Legal Intern</h3>
+                                <div class="timeline-place">District Court · Basti</div>
+                                <p class="timeline-description">
+                                    Civil-case research, court
+                                    proceedings, drafting of notices
+                                    under Section 138 of the
+                                    Negotiable Instruments Act and
+                                    general litigation support.
+                                </p>
+                            </div>
+                        </article>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 CREDENTIALS
+                 ================================================= -->
+
+            <section
+                class="section credentials-section"
+                aria-labelledby="heading-credentials"
+            >
+
+                <div class="credentials-content">
+
+                    <div class="section-number" aria-hidden="true">04 / CREDENTIALS</div>
+
+                    <h2 id="heading-credentials" class="credentials-heading">
+                        Academic
+                        <span>foundation.</span>
+                    </h2>
+
+                    <div class="credentials" role="list" aria-label="Academic credentials">
+
+                        <article class="credential" role="listitem">
+                            <div class="credential-label">2024 — 2025</div>
+                            <h3>LL.M.<br>Maritime Laws</h3>
+                            <p>Rashtriya Raksha University · 70.29%</p>
+                        </article>
+
+                        <article class="credential" role="listitem">
+                            <div class="credential-label">2018 — 2023</div>
+                            <h3>B.A. LL.B.<br>(Hons.)</h3>
+                            <p>The ICFAI University · 7.52 CGPA</p>
+                        </article>
+
+                        <article class="credential" role="listitem">
+                            <div class="credential-label">Qualification</div>
+                            <h3>AIBE-XVIII<br>Passed</h3>
+                            <p>All India Bar Examination</p>
+                        </article>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 MARITIME SECURITY
+                 ================================================= -->
+
+            <section
+                class="section section-left"
+                aria-labelledby="heading-security"
+            >
+
+                <div class="section-content">
+
+                    <div class="section-number" aria-hidden="true">05 / MARITIME SECURITY</div>
+
+                    <h2 id="heading-security" class="section-heading">
+                        Beyond the
+                        <em>black letter.</em>
+                    </h2>
+
+                    <div class="section-rule" aria-hidden="true"></div>
+
+                    <p class="section-description">
+                        Professional development extending beyond
+                        conventional legal study into maritime
+                        security, coastal security and contemporary
+                        challenges facing the maritime domain.
+                    </p>
+
+                    <div class="timeline" role="list" aria-label="Professional development">
+
+                        <article class="timeline-entry" role="listitem">
+                            <div class="timeline-date">APR 2025</div>
+                            <div>
+                                <h3 class="timeline-role">Research Methodology Workshop</h3>
+                                <div class="timeline-place">Rashtriya Raksha University</div>
+                            </div>
+                        </article>
+
+                        <article class="timeline-entry" role="listitem">
+                            <div class="timeline-date">NOV 2024</div>
+                            <div>
+                                <h3 class="timeline-role">Port Security</h3>
+                                <div class="timeline-place">RRU · Indian Register of Shipping</div>
+                            </div>
+                        </article>
+
+                        <article class="timeline-entry" role="listitem">
+                            <div class="timeline-date">OCT 2024</div>
+                            <div>
+                                <h3 class="timeline-role">Integrated Coastal &amp; Maritime Security</h3>
+                                <div class="timeline-place">RRU · ITEC Programme</div>
+                            </div>
+                        </article>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =================================================
+                 CONTACT
+                 ================================================= -->
+
+            <section
+                id="contact"
+                class="contact-section"
+                aria-labelledby="heading-contact"
+            >
+
+                <div class="contact-box">
+
+                    <div class="contact-box-header">
+
+                        <div>
+                            <div class="section-number" aria-hidden="true">06 / CONTACT</div>
+                            <h2 id="heading-contact" class="contact-heading">
+                                Let's <em>connect.</em>
+                            </h2>
+                        </div>
+
+                        <p class="contact-box-note">
+                            For legal enquiries,
+                            research collaboration
+                            and professional correspondence.
+                        </p>
+
+                    </div>
+
+
+                    <form
+                        id="contact-form"
+                        class="contact-form"
+                        novalidate
+                        aria-label="Contact form"
+                    >
+
+                        <!-- Honeypot (bot trap) -->
+                        <div class="contact-honeypot" aria-hidden="true">
+                            <label for="contact-website">Website</label>
+                            <input
+                                id="contact-website"
+                                type="text"
+                                name="website"
+                                tabindex="-1"
+                                autocomplete="off"
+                            >
+                        </div>
+
+                        <div class="contact-row">
+
+                            <div class="contact-field">
+                                <label for="contact-name">Name</label>
+                                <input
+                                    id="contact-name"
+                                    type="text"
+                                    name="name"
+                                    placeholder="Your name"
+                                    autocomplete="name"
+                                    required
+                                    minlength="2"
+                                    maxlength="120"
+                                >
+                            </div>
+
+                            <div class="contact-field">
+                                <label for="contact-email">Email</label>
+                                <input
+                                    id="contact-email"
+                                    type="email"
+                                    name="email"
+                                    placeholder="your@email.com"
+                                    autocomplete="email"
+                                    required
+                                    maxlength="254"
+                                >
+                            </div>
+
+                        </div>
+
+
+                        <div class="contact-field">
+                            <label for="contact-subject">Subject</label>
+                            <input
+                                id="contact-subject"
+                                type="text"
+                                name="subject"
+                                placeholder="What would you like to discuss?"
+                                required
+                                minlength="2"
+                                maxlength="200"
+                            >
+                        </div>
+
+
+                        <div class="contact-field">
+                            <label for="contact-message">Message</label>
+                            <textarea
+                                id="contact-message"
+                                name="message"
+                                rows="5"
+                                placeholder="Write your message..."
+                                required
+                                minlength="10"
+                                maxlength="5000"
+                            ></textarea>
+                        </div>
+
+
+                        <div
+                            id="form-status"
+                            class="form-status"
+                            role="status"
+                            aria-live="polite"
+                            aria-atomic="true"
+                        ></div>
+
+
+                        <div class="contact-submit-row">
+
+                            <span class="contact-direct">
+                                Or email directly:
+                                <a href="mailto:Tusharmishra0228@gmail.com">
+                                    Tusharmishra0228@gmail.com
+                                </a>
+                            </span>
+
+                            <button
+                                type="submit"
+                                id="contact-submit"
+                                class="contact-submit"
+                                aria-describedby="form-status"
+                            >
+                                <span id="submit-label">Send message</span>
+                                <span id="submit-arrow" aria-hidden="true">↗</span>
+                            </button>
+
+                        </div>
+
+                    </form>
+
+                </div>
+
+            </section>
+
+
+            <!-- =================================================
+                 FOOTER
+                 ================================================= -->
+
+            <footer>
+                <span>Tushar Mishra</span>
+                <span>Advocate · Maritime Law</span>
+                <span>© 2026</span>
+            </footer>
+
+
+        </main>
+
+    </div>
+
+
+
+    <!-- =====================================================
+         SPLINE INTERACTION CONTROL
+         ===================================================== -->
+
+    <script>
+    (function () {
+        "use strict";
+
+        /* ---- Spline viewer element ---- */
+        var sv = document.getElementById("spline-viewer");
+
+        if (!sv) return;
+
+        /*
+         * DESKTOP:  pointer movement reaches Spline (torch effect).
+         *           Drag, click, wheel are blocked (no rotation / zoom).
+         * MOBILE:   pointer-events: none (no torch, no accidental interaction).
+         */
+
+        /* Block drag / click */
+        ["pointerdown", "mousedown", "pointerup", "mouseup", "click"].forEach(function (evt) {
+            sv.addEventListener(evt, function (e) { e.preventDefault(); }, { capture: true });
+        });
+
+        /* Block Spline zoom without blocking page scroll */
+        sv.addEventListener("wheel", function (e) { e.stopPropagation(); }, { capture: true });
+
+        /* Block touch manipulation of the statue; page still scrolls */
+        ["touchstart", "touchmove", "touchend"].forEach(function (evt) {
+            sv.addEventListener(evt, function (e) { e.stopPropagation(); }, { capture: true, passive: true });
+        });
+
+        /* Block gesture events (older Safari pinch-zoom on Spline) */
+        ["gesturestart", "gesturechange", "gestureend"].forEach(function (evt) {
+            sv.addEventListener(evt, function (e) { e.preventDefault(); }, { capture: true });
+        });
+
+        /* Mobile vs desktop pointer interaction */
+        var mq = window.matchMedia("(max-width: 800px)");
+
+        function applySplineMode() {
+            sv.style.pointerEvents = mq.matches ? "none" : "auto";
+        }
+
+        applySplineMode();
+
+        if (mq.addEventListener) {
+            mq.addEventListener("change", applySplineMode);
+        } else {
+            mq.addListener(applySplineMode); /* older Safari */
+        }
+
+    }());
+    </script>
+
+
+    <!-- =====================================================
+         CONTACT FORM
+         ===================================================== -->
+
+    <script>
+    (function () {
+        "use strict";
+
+        var form       = document.getElementById("contact-form");
+        var submitBtn  = document.getElementById("contact-submit");
+        var submitLbl  = document.getElementById("submit-label");
+        var submitArw  = document.getElementById("submit-arrow");
+        var statusBox  = document.getElementById("form-status");
+
+        if (!form) return;
+
+        var submitting = false; /* prevent duplicate submissions */
+
+        /* ---- Show status message ---- */
+        function setStatus(type, msg) {
+            statusBox.className = "form-status " + type;
+            statusBox.textContent = msg;
+        }
+
+        function clearStatus() {
+            statusBox.className = "form-status";
+            statusBox.textContent = "";
+        }
+
+        /* ---- Set button loading state ---- */
+        function setLoading(loading) {
+            submitBtn.disabled = loading;
+            submitLbl.textContent = loading ? "Sending…" : "Send message";
+            submitArw.textContent = loading ? "" : "↗";
+        }
+
+        /* ---- Client-side validation ---- */
+        function validate(data) {
+            if (!data.name || data.name.trim().length < 2) {
+                return "Please enter your name.";
+            }
+            if (!data.email || !/^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/.test(data.email)) {
+                return "Please enter a valid email address.";
+            }
+            if (!data.subject || data.subject.trim().length < 2) {
+                return "Please enter a subject.";
+            }
+            if (!data.message || data.message.trim().length < 10) {
+                return "Your message is too short (minimum 10 characters).";
+            }
+            return null;
+        }
+
+        /* ---- Submit handler ---- */
+        form.addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            if (submitting) return;
+
+            clearStatus();
+
+            var data = {
+                name:    form.elements["name"].value,
+                email:   form.elements["email"].value,
+                subject: form.elements["subject"].value,
+                message: form.elements["message"].value,
+                website: form.elements["website"].value /* honeypot */
+            };
+
+            /* Client-side check */
+            var err = validate(data);
+            if (err) {
+                setStatus("error", err);
+                return;
+            }
+
+            submitting = true;
+            setLoading(true);
+
+            fetch("/api/contact", {
+                method:  "POST",
+                headers: { "Content-Type": "application/json" },
+                body:    JSON.stringify(data)
+            })
+            .then(function (res) {
+                return res.json().then(function (json) {
+                    return { ok: res.ok, json: json };
+                });
+            })
+            .then(function (result) {
+                setLoading(false);
+                submitting = false;
+
+                if (result.ok && result.json && result.json.ok) {
+                    setStatus("success", result.json.message || "Message sent. I'll be in touch soon.");
+                    form.reset();
+                } else {
+                    var msg = (result.json && result.json.message)
+                        ? result.json.message
+                        : "Something went wrong. Please try the direct email link below.";
+                    setStatus("error", msg);
+                }
+            })
+            .catch(function () {
+                setLoading(false);
+                submitting = false;
+                setStatus("error", "Could not reach the server. Please try the direct email link below.");
+            });
+        });
+
+    }());
+    </script>
+
+
+</body>
+
+</html>

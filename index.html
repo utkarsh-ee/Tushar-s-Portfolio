@@ -896,7 +896,28 @@
         /* =====================================================
            FOOTER
            ===================================================== */
-
+        footer .owner-access {
+            pointer-events: auto !important;
+            position: relative;
+            left: auto;
+            bottom: auto;
+            z-index: 50;
+            padding: 8px 10px;
+            border: 1px solid rgba(20,20,20,.16);
+            background: rgba(255,255,255,.48);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            color: var(--muted);
+            font-family: var(--mono);
+            font-size: 7px;
+            letter-spacing: .13em;
+            text-transform: uppercase;
+            cursor: pointer;
+        }
+        footer .owner-access:hover {
+            color: var(--ink);
+            border-color: rgba(16,17,19,.28);
+        }
         footer {
             min-height: 72px;
             height: 72px;
@@ -1283,6 +1304,7 @@
 
             /* Footer */
             footer {
+                
                 min-height: 65px;
                 height: auto;
                 padding: 16px 22px;
@@ -1294,7 +1316,12 @@
                 font-size: 7px;
             }
 
-            footer span:nth-child(2) { display: none; }
+            footer span:nth-child(2),
+            footer span:last-child { display: none; }
+
+            footer .owner-access {
+                margin-left: auto;
+            }
 
         }
 
@@ -1333,7 +1360,6 @@
         .site-progress { position:fixed; right:12px; top:50%; transform:translateY(-50%); z-index:30; display:flex; flex-direction:column; gap:7px; pointer-events:none; }
         .site-progress span { width:3px; height:18px; border-radius:4px; background:rgba(16,17,19,.16); transition:.25s ease; }
         .site-progress span.active { height:30px; background:var(--gold); }
-        .owner-access { position:fixed; left:24px; bottom:24px; z-index:40; padding:10px 12px; border:1px solid rgba(255,255,255,.72); background:rgba(255,255,255,.46); backdrop-filter:blur(16px); -webkit-backdrop-filter:blur(16px); color:var(--muted); font:7px var(--mono); letter-spacing:.13em; text-transform:uppercase; cursor:pointer; }
         .owner-access:hover { color:var(--ink); border-color:rgba(16,17,19,.25); }
         .login-shell { max-width:430px; margin:0 auto; padding:16px 0 6px; }
         .login-mark { width:42px; height:42px; display:grid; place-items:center; border:1px solid var(--ink); font-family:var(--serif); margin-bottom:20px; }
@@ -1369,7 +1395,7 @@
         .portal-sync { margin-top:14px; padding:10px 12px; border:1px solid var(--line); background:var(--paper-soft); font:8px/1.6 var(--mono); color:var(--muted); }
         .portal-sync.ok { border-color:rgba(93,139,104,.35); color:#4f7057; }
         .portal-sync.err { border-color:rgba(155,63,63,.25); color:#9b3f3f; }
-        @media(max-width:800px){ .site-progress{display:none}.owner-access{left:14px;bottom:14px}.admin-form-grid,.case-modal-form .case-grid{grid-template-columns:1fr}.admin-form .wide,.case-modal-form .wide{grid-column:auto}.dashboard-top{align-items:flex-start;flex-direction:column}.dashboard-stat{gap:16px} }
+        @media(max-width:800px){ .site-progress{display:none}.admin-form-grid,.case-modal-form .case-grid{grid-template-columns:1fr}.admin-form .wide,.case-modal-form .wide{grid-column:auto}.dashboard-top{align-items:flex-start;flex-direction:column}.dashboard-stat{gap:16px} }
 
         /* =====================================================
            PREMIUM ACTIONS / LEGAL ROUTE FINDER
@@ -1478,10 +1504,8 @@
         .route-consult { background: var(--ink); color: #fff; }
         .route-reset { background: transparent; color: var(--ink); }
 
-        .portal-trigger { position: fixed; left: 24px; bottom: 24px; z-index: 40; pointer-events: auto; padding: 10px 12px; border: 1px solid rgba(255,255,255,.7); background: rgba(255,255,255,.42); backdrop-filter: blur(16px); -webkit-backdrop-filter: blur(16px); color: var(--muted); font-family: var(--mono); font-size: 7px; letter-spacing: .13em; text-transform: uppercase; cursor: pointer; }
-        .portal-trigger:hover { color: var(--ink); }
 
-        .modal-backdrop { position: fixed; inset: 0; z-index: 100; display: none; align-items: center; justify-content: center; padding: 24px; background: rgba(8,10,12,.34); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+        .modal-backdrop { pointer-events: auto; position: fixed; inset: 0; z-index: 100; display: none; align-items: center; justify-content: center; padding: 24px; background: rgba(8,10,12,.34); backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
         .modal-backdrop.open { display: flex; }
         .portal-modal { width: min(920px, 96vw); max-height: 90vh; overflow: auto; padding: 28px; background: rgba(250,250,248,.94); border: 1px solid rgba(255,255,255,.9); box-shadow: 0 40px 120px rgba(0,0,0,.28); }
         .portal-header { display: flex; justify-content: space-between; gap: 20px; align-items: flex-start; padding-bottom: 22px; border-bottom: 1px solid var(--line); }
@@ -1504,7 +1528,6 @@
             .floating-actions { right: 14px; bottom: 14px; }
             .floating-book { min-width: 180px; }
             .review-badge { display: none; }
-            .portal-trigger { left: 14px; bottom: 14px; }
             .route-section { padding: 90px 22px; align-items: center; }
             .route-panel { width: 100%; padding: 24px 18px; background: rgba(255,255,255,.84); }
             .route-top { display: block; }
@@ -1802,43 +1825,13 @@
                     <div class="section-rule" aria-hidden="true"></div>
 
                     <div class="timeline" id="experience-list" role="list" aria-label="Work experience">
-
-                        <article class="timeline-entry" role="listitem">
-                            <div class="timeline-date">2023 — 2024</div>
+                        <div class="timeline-entry" id="experience-loading" role="status">
+                            <div class="timeline-date">LOADING</div>
                             <div>
-                                <h3 class="timeline-role">Advocate</h3>
-                                <div class="timeline-place">District Court · Delhi</div>
-                                <p class="timeline-description">
-                                    Client advisory, case preparation, legal research, witness interviews,
-                                    evidence review, defence strategy, legal drafting and filing.
-                                </p>
+                                <h3 class="timeline-role">Loading experience</h3>
+                                <p class="timeline-description">Fetching the latest published profile entries.</p>
                             </div>
-                        </article>
-
-                        <article class="timeline-entry" role="listitem">
-                            <div class="timeline-date">2024</div>
-                            <div>
-                                <h3 class="timeline-role">Research Intern</h3>
-                                <div class="timeline-place">RRU Centre for Indian Ocean Legal Studies</div>
-                                <p class="timeline-description">
-                                    Maritime-law research spanning Arctic jurisdiction, shipping decarbonization,
-                                    autonomous ships and underwater radiated noise.
-                                </p>
-                            </div>
-                        </article>
-
-                        <article class="timeline-entry" role="listitem">
-                            <div class="timeline-date">2023</div>
-                            <div>
-                                <h3 class="timeline-role">Legal Intern</h3>
-                                <div class="timeline-place">District Court · Basti</div>
-                                <p class="timeline-description">
-                                    Civil-case research, court proceedings, drafting of notices under Section 138
-                                    of the Negotiable Instruments Act and general litigation support.
-                                </p>
-                            </div>
-                        </article>
-
+                        </div>
                     </div>
 
                 </div>
@@ -2170,8 +2163,6 @@
                 </button>
             </div>
 
-            <button class="owner-access" id="portal-trigger" type="button">Owner access</button>
-
             <div class="modal-backdrop" id="booking-modal" role="dialog" aria-modal="true" aria-labelledby="booking-title">
                 <div class="portal-modal" style="max-width:620px">
                     <div class="portal-header">
@@ -2207,67 +2198,6 @@
                 </div>
             </div>
 
-            <div class="modal-backdrop" id="admin-modal" role="dialog" aria-modal="true" aria-labelledby="admin-title">
-                <div class="portal-modal">
-                    <div id="admin-login-view" class="login-shell">
-                        <div class="login-mark">TM</div><div class="portal-kicker">PRIVATE AREA</div><h2 class="portal-title" style="font-size:34px">Owner access.</h2>
-                        <p class="portal-note" style="margin-top:12px">The production version will require authentication before any profile or case data can be accessed.</p>
-                        <div class="login-field"><label for="demo-owner-email">Email</label><input id="demo-owner-email" type="email" placeholder="owner@example.com"></div>
-                        <div class="login-field"><label for="demo-owner-password">Password</label><input id="demo-owner-password" type="password" placeholder="••••••••"></div>
-                        <div class="login-error" id="demo-login-error" aria-live="polite"></div>
-                        <div class="login-actions"><button class="login-cancel" type="button" data-close-modal="admin-modal">Close</button><button class="login-submit" id="demo-login-submit" type="button">Sign in to preview</button></div>
-                        <div class="micro-note">Visual prototype only. No credentials are stored or transmitted.</div>
-                    </div>
-                    <div id="admin-dashboard-view" style="display:none">
-                    <div class="portal-header">
-                        <div><div class="portal-kicker">PRIVATE CLIENT DASHBOARD / PROTOTYPE</div><h2 class="portal-title" id="admin-title">Profile control.</h2>
-                        </div>
-                        <button class="portal-close" type="button" data-close-modal="admin-modal" aria-label="Close">×</button>
-                    </div>
-
-                    <div class="dashboard-top"><div><div class="dashboard-status">Authenticated owner session</div><div class="portal-note" style="margin-top:8px">Manage the public professional profile without editing code.</div></div><div class="dashboard-stat"><div><strong>04</strong><span>Experience</span></div><div><strong>12</strong><span>Publications</span></div><div><strong>03</strong><span>New enquiries</span></div></div></div>
-
-                    <div class="portal-grid">
-                        <div class="portal-card">
-                            <h3>Experience</h3>
-                            <div class="admin-entry">
-                                <div class="admin-date">2023 — 2024</div>
-                                <div><strong>Advocate</strong><span>District Court · Delhi</span></div>
-                                <button class="admin-edit" type="button">Edit</button>
-                            </div>
-                            <div class="admin-entry">
-                                <div class="admin-date">2024</div>
-                                <div><strong>Research Intern</strong><span>RRU Centre for Indian Ocean Legal Studies</span></div>
-                                <button class="admin-edit" type="button">Edit</button>
-                            </div>
-                            <button class="admin-add" id="admin-add-experience" type="button">+ Add experience</button>
-                            <div class="admin-form" id="admin-experience-form"><div class="admin-form-grid">
-                                <div><label for="exp-role">Role</label><input id="exp-role" placeholder="Advocate"></div><div><label for="exp-org">Organisation</label><input id="exp-org" placeholder="Chambers / institution"></div>
-                                <div><label for="exp-from">From</label><input id="exp-from" placeholder="2026"></div><div><label for="exp-to">To</label><input id="exp-to" placeholder="Present"></div>
-                                <div class="wide"><label for="exp-description">Description</label><textarea id="exp-description" placeholder="Short description shown on the public profile."></textarea></div>
-                            </div><div class="admin-form-actions"><button class="admin-cancel" id="admin-cancel-experience" type="button">Cancel</button><button class="admin-save" id="admin-save-experience" type="button">Save preview</button></div></div>
-                        </div>
-
-                        <div class="portal-card">
-                            <h3>AI intake controls</h3>
-                            <p class="portal-note">The production dashboard can let the advocate review, correct and update the AI's preliminary routing logic.</p>
-                            <div style="margin-top:12px">
-                                <span class="portal-chip">Civil Appeal</span>
-                                <span class="portal-chip">Criminal Appeal</span>
-                                <span class="portal-chip">Writ Petition</span>
-                                <span class="portal-chip">Tribunal Challenge</span>
-                                <span class="portal-chip">SLP / Supreme Court</span>
-                            </div>
-                            <button class="admin-add" type="button">+ Add / edit routing rule</button>
-                        </div>
-                    </div>
-
-                    <p class="portal-note" style="margin:20px 0 0">
-                        Production version: protected login → database → editable profile → AI configuration → case-intake review. This button is only a visual prototype and does not expose a real admin system.
-                    </p>
-                </div>
-            </div>
-
 
             <!-- =================================================
                  FOOTER
@@ -2276,6 +2206,7 @@
             <footer>
                 <span>Tushar Mishra</span>
                 <span>Advocate · Maritime Law</span>
+                <button class="owner-access" id="portal-trigger" type="button">Owner access</button>
                 <span>© 2026</span>
             </footer>
 
@@ -2537,8 +2468,11 @@
         }
 
         var portal = document.getElementById('portal-trigger');
-        var admin = document.getElementById('admin-modal');
-        if (portal) portal.addEventListener('click', function () { window.location.href = '/admin.html'; });
+        if (portal) {
+            portal.addEventListener('click', function () {
+                window.location.href = '/admin.html';
+            });
+        }
 
         document.querySelectorAll('[data-close-modal]').forEach(function (button) {
             button.addEventListener('click', function () {
@@ -2581,6 +2515,90 @@ var links=qsa(".nav-links a");if("IntersectionObserver" in window){var io=new In
 
 
 <script src="/supabase-config.js"></script>
-\n<script>\n(function(){\n    "use strict";\n    /* Public Supabase configuration. The anon key is designed to be public; RLS protects the data. */\n    var SUPABASE_URL = window.SUPABASE_URL || "YOUR_SUPABASE_URL";\n    var SUPABASE_ANON_KEY = window.SUPABASE_ANON_KEY || "YOUR_SUPABASE_ANON_KEY";\n    var hasConfig = SUPABASE_URL.indexOf("YOUR_") !== 0 && SUPABASE_ANON_KEY.indexOf("YOUR_") !== 0 && window.supabase;\n    if(!hasConfig) return;\n    var client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);\n    var list = document.getElementById("experience-list");\n    if(!list) return;\n    client.from("experiences").select("id,role,organization,location,start_year,end_year,description").eq("published",true).order("sort_order",{ascending:true}).order("start_year",{ascending:false}).then(function(res){\n        if(res.error || !res.data || !res.data.length) return;\n        list.innerHTML = res.data.map(function(x){\n            var end = x.end_year ? x.end_year : "Present";\n            var place = [x.organization,x.location].filter(Boolean).join(" · ");\n            return '<article class="timeline-entry" role="listitem">'+\n              '<div class="timeline-date">'+escapeHtml(x.start_year||"")+ ' — ' + escapeHtml(end) +'</div>'+\n              '<div><h3 class="timeline-role">'+escapeHtml(x.role||"")+'</h3>'+\n              '<div class="timeline-place">'+escapeHtml(place)+'</div>'+\n              '<p class="timeline-description">'+escapeHtml(x.description||"")+'</p></div></article>';\n        }).join("");\n    });\n    function escapeHtml(v){ return String(v).replace(/[&<>"']/g,function(c){return ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#039;"})[c];}); }\n})();\n</script>\n</body>
+<script>
+(function () {
+    "use strict";
+
+    var SUPABASE_URL = window.SUPABASE_URL || "";
+    var SUPABASE_ANON_KEY = window.SUPABASE_ANON_KEY || "";
+    var list = document.getElementById("experience-list");
+
+    function escapeHtml(value) {
+        return String(value == null ? "" : value).replace(/[&<>"']/g, function (c) {
+            return {
+                "&": "&amp;",
+                "<": "&lt;",
+                ">": "&gt;",
+                '"': "&quot;",
+                "'": "&#039;"
+            }[c];
+        });
+    }
+
+    function showMessage(title, text) {
+        if (!list) return;
+        list.innerHTML =
+            '<div class="timeline-entry" role="status">' +
+                '<div class="timeline-date">PROFILE</div>' +
+                '<div>' +
+                    '<h3 class="timeline-role">' + escapeHtml(title) + '</h3>' +
+                    '<p class="timeline-description">' + escapeHtml(text) + '</p>' +
+                '</div>' +
+            '</div>';
+    }
+
+    if (!list) return;
+
+    if (!window.supabase || !SUPABASE_URL || !SUPABASE_ANON_KEY) {
+        showMessage("Experience unavailable", "The public profile database is not configured yet.");
+        return;
+    }
+
+    var client = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
+    client
+        .from("experiences")
+        .select("id,role,organization,location,start_year,end_year,description,published,sort_order")
+        .eq("published", true)
+        .order("sort_order", { ascending: true })
+        .order("start_year", { ascending: false })
+        .then(function (res) {
+            if (res.error) {
+                console.error("Supabase experience load failed:", res.error);
+                showMessage("Experience unavailable", "The latest profile entries could not be loaded.");
+                return;
+            }
+
+            if (!res.data || !res.data.length) {
+                showMessage("No published experience", "The owner has not published any experience entries yet.");
+                return;
+            }
+
+            list.innerHTML = res.data.map(function (x) {
+                var start = x.start_year || "";
+                var end = x.end_year || "Present";
+                var place = [x.organization, x.location].filter(Boolean).join(" · ");
+
+                return (
+                    '<article class="timeline-entry" role="listitem">' +
+                        '<div class="timeline-date">' +
+                            escapeHtml(start) + ' — ' + escapeHtml(end) +
+                        '</div>' +
+                        '<div>' +
+                            '<h3 class="timeline-role">' + escapeHtml(x.role || "") + '</h3>' +
+                            '<div class="timeline-place">' + escapeHtml(place) + '</div>' +
+                            '<p class="timeline-description">' + escapeHtml(x.description || "") + '</p>' +
+                        '</div>' +
+                    '</article>'
+                );
+            }).join("");
+        })
+        .catch(function (error) {
+            console.error("Supabase experience load error:", error);
+            showMessage("Experience unavailable", "The latest profile entries could not be loaded.");
+        });
+}());
+</script>
+</body>
 
 </html>
